@@ -1,11 +1,16 @@
 package com.golems_addon_futurum.entity;
 
+import java.util.List;
+
+import com.golems.entity.GolemBase;
 import com.golems.entity.GolemLightProvider;
 import com.golems_addon_futurum.main.FuturumGolems;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemFishFood;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 
 public class EntitySeaLanternGolem extends GolemLightProvider
@@ -15,28 +20,22 @@ public class EntitySeaLanternGolem extends GolemLightProvider
 		super(world, 4.0F, EnumLightLevel.FULL);
 	}
 	
-	protected void entityInit()
+	protected void applyTexture()
 	{
-		super.entityInit();
 		this.setTextureType(this.getGolemTexture(FuturumGolems.MODID, "sea_lantern"));
 	}
 
-	//THE FOLLOWING USE @Override AND SHOULD BE SET FOR EACH GOLEM
-
 	@Override
-	protected void applyEntityAttributes() 
+	protected void applyAttributes() 
 	{
-		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(26.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.26D);
 	}
 
 	@Override
-	public ItemStack getGolemDrops() 
+	public void addGolemDrops(List<WeightedRandomChestContent> dropList, boolean recentlyHit, int lootingLevel)
 	{
-		int size = 1 + this.rand.nextInt(3);
-		//return new ItemStack(Blocks.sea_lantern, size);
-		return null;
+		GolemBase.addDropEntry(dropList, Items.fish, rand.nextInt(ItemFishFood.FishType.values().length), 1, 8 + lootingLevel * 2, 20 + lootingLevel * 10);
 	}
  
 	@Override

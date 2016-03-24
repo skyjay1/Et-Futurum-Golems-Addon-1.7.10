@@ -1,21 +1,16 @@
 package com.golems_addon_futurum.main;
 
-import java.util.ArrayList;
-
+import com.golems.entity.EntityIceGolem;
 import com.golems.events.GolemBuildEvent;
+import com.golems.main.Config;
 import com.golems_addon_futurum.entity.EntityMushroomGolem;
 import com.golems_addon_futurum.entity.EntityPrismarineGolem;
 import com.golems_addon_futurum.entity.EntityRedSandstoneGolem;
 import com.golems_addon_futurum.entity.EntitySeaLanternGolem;
 import com.golems_addon_futurum.entity.EntitySlimeGolem;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraftforge.oredict.OreDictionary;
+import net.minecraft.init.Blocks;
 
 public class EventHandlerCommon 
 {
@@ -23,8 +18,6 @@ public class EventHandlerCommon
 	public void onBuildGolem(GolemBuildEvent event)
 	{
 		String name = event.blockBelow.getUnlocalizedName();	
-		// debug:
-		//FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText("Unlocalized Name = '" + name + "' - meta = " + event.blockMeta));		
 		// if it has not already been set
 		if(event.isGolemNull())
 		{

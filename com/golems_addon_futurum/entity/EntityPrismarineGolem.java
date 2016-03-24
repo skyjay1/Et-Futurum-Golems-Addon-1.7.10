@@ -1,11 +1,15 @@
 package com.golems_addon_futurum.entity;
 
+import java.util.List;
+
 import com.golems.entity.GolemBase;
 import com.golems_addon_futurum.main.FuturumGolems;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemFishFood;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 
 public class EntityPrismarineGolem extends GolemBase 
@@ -16,9 +20,8 @@ public class EntityPrismarineGolem extends GolemBase
 	}
 	
 	@Override
-	protected void entityInit()
+	protected void applyTexture()
 	{
-		super.entityInit();
 		this.setTextureType(this.getGolemTexture(FuturumGolems.MODID, "prismarine"));
 	}
 	
@@ -39,23 +42,18 @@ public class EntityPrismarineGolem extends GolemBase
 			this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.24D);
 		}
 	}
-	
-	//THE FOLLOWING USE @Override AND SHOULD BE SET FOR EACH GOLEM
-	
+		
 	@Override
-	protected void applyEntityAttributes() 
+	protected void applyAttributes() 
 	{
-	 	super.applyEntityAttributes();
 	 	this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(24.0D);
 	  	this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.24D);
 	}
 	
 	@Override
-	public ItemStack getGolemDrops() 
+	public void addGolemDrops(List<WeightedRandomChestContent> dropList, boolean recentlyHit, int lootingLevel)	
 	{
-		int size = 6 + this.rand.nextInt(6);
-		//return new ItemStack(Items.prismarine_shard, size);
-		return null;
+		GolemBase.addDropEntry(dropList, Items.fish, rand.nextInt(ItemFishFood.FishType.values().length), 1, 8 + lootingLevel * 2, 20 + lootingLevel * 10);
 	}
 
 	@Override

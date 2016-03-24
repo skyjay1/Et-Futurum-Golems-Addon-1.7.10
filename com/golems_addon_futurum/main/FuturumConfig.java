@@ -45,7 +45,7 @@ public class FuturumConfig
 		
 		///////////////////////////////////////////////////////////////////////////////////////
 		
-		TWEAK_SLIME = config.getFloat("Slime Golem Knockback", CATEGORY_TWEAKS, 2.0012F, 0.001F, 10.0F, 
+		TWEAK_SLIME = config.getFloat("Slime Golem Knockback", CATEGORY_TWEAKS, 2.1012F, 0.001F, 10.0F, 
 				"How powerful the Congealed Slime Golem attack is (Higher Value = Further Knockback)");
 		TWEAK_MUSHROOM = config.getInt("Mushroom Golem Interval", CATEGORY_TWEAKS, 420, 2, 24000, 
 				"Average ticks between planting mushrooms ");
